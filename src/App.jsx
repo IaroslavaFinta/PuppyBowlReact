@@ -1,28 +1,49 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { getPlayers, createPlayer,<q></q>  } from "./api"
+import { getPlayers, getPlayer, createPlayer, deletePlayer, getTeams } from "./api"
 
 function App() {
   
-  //fetch all players
+  const [players, setPlayers] = useState([]);
+  const [player, setPlayer] = useState({});
+
   useEffect(() => {
-    getPlayers().then((players) =>
-      console.log(players))
+    getPlayers().then(players => {
+      setPlayers(players);
+    });
   }, []);
 
-  //for create a new player
-  // useEffect(() => {
-  //   createPlayer({
+  function handlePlayerClick(playerId) {
+    getPlayer(playerId).then(setPlayer)
+}
 
-  //   }).then(newPlayer => {
-  //     console.log(newPlayer)
-  //   })
-  // }, []);
 
   return (
-    <div>
-      Hello
-    </div>
+    <>
+      <h1>Puppy Bowl</h1>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Breed</th>
+          <th>Status</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+          {players.map(player => {
+            return (
+              <tr key={player.id}>
+                <td>{player.name}</td>
+                <td>{player.breed}</td>
+                <td>{player.status}</td>
+                <td>
+                  <button onClick={handlePlayerClick(player.id)}>View Player</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
     )
 }
 
