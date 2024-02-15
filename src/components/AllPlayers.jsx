@@ -33,6 +33,20 @@ export default function AllPlayers() {
     });
   }
 
+  const [searchInput, setSearchInput] = useState("");
+
+  // a handler function that will read changes in the search bar
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  if (searchInput.length > 0) {
+    getPlayers().filter((player) => {
+      return player.name.match(searchInput);
+    });
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit} className="form">
@@ -42,6 +56,18 @@ export default function AllPlayers() {
         <input type="text" name="breed" className="formSection" />
         <button>Submit</button>
       </form>
+      {/* input of type search inside the return statement */}
+      <div className="search-bar">
+        <div className="input-wrapper">
+          <input
+            className="search-input"
+            type="search"
+            placeholder="Type to search for a puppy"
+            value={searchInput}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
       <table>
         <thead>
           <th>Name</th>
