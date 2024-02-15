@@ -14,9 +14,11 @@ export default function Teams() {
     <>
       <table>
         <thead>
-          <td>Name</td>
-          <td>Score</td>
-          <td>Players</td>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Players</th>
+          </tr>
         </thead>
         <tbody>
           {teams.map((team) => {
@@ -24,8 +26,15 @@ export default function Teams() {
               <tr key={team.id}>
                 <td>{team.name}</td>
                 <td>{team.score}</td>
-                <ul>{team.players.name}</ul>
-                {console.log(team.players.name)}
+                <td>
+                  {team.players.map((teamA) => {
+                    return (
+                      <tr key={team.id}>
+                      <td>{teamA.name}</td>
+                      </tr>
+                    )
+                  })}
+                </td>
               </tr>
             );
           })}
