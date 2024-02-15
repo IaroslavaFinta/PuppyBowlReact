@@ -25,7 +25,8 @@ export async function createPlayer(player) {
         const response = await fetch(`${API_URL}/players`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"},
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(player),
         });
         const result = await response.json();
@@ -37,10 +38,11 @@ export async function createPlayer(player) {
 
 export async function deletePlayer(playerId) {
     try {
-        const response = await fetch(`${API_URL}/ players/${playerId}`, {
+        const response = await fetch(`${API_URL}/players/${playerId}`, {
             method: "DELETE",
         });
-        await response.json();
+        const delPlayer = await response.json();
+        return delPlayer;
     } catch (error) {
         console.log(error);
     }
