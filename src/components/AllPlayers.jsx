@@ -48,6 +48,11 @@ export default function AllPlayers() {
         <input type="text" name="name" className="formSection" />
         <label htmlFor="breed">Breed</label>
         <input type="text" name="breed" className="formSection" />
+        <label htmlFor="status" className="formSection">Status</label>
+        <select name="status" id="status">
+          <option value="field">Field</option>
+          <option value="bench">Bench</option>
+        </select>
         <button>Submit</button>
       </form>
       {/* input of type search inside the return statement */}

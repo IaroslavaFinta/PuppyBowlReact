@@ -37,6 +37,7 @@ body {
   vertical-align: middle;
   flex-direction: column;
   height: 100%;
+  margin-top: 150px;
 }
 
 button {
@@ -110,8 +111,11 @@ button:focus-visible {
 }
 
 table {
+  margin-top: 50px;
   border-collapse: collapse;
-  width: 100%;
+  width: 150%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 thead {
@@ -161,6 +165,7 @@ td {
   outline: none;
 }
 
-#search-icon {
-  color: #535bf2;
+img{
+  width: auto;
+  height: 500px;
 }
