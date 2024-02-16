@@ -1,33 +1,25 @@
-import { useEffect, useState, useParams } from "react";
+import { useEffect, useState } from "react";
 import { getPlayer } from "../api";
+import { useParams } from "react-router-dom";
 
 export default function PlayerDetails() {
-  const [player, setPlayer] = useState();
+  const [player, setPlayer] = useState({});
 
   let { id } = useParams();
+  console.log(id);
 
   useEffect(() => {
     getPlayer(id).then((player) => {
+      console.log(player);
       setPlayer(player);
     });
   }, []);
 
   return (
     <>
-      {player.map((single) => {
-        return (
-          <ul key={single.id}>
-            <li>{single.name}</li>
-            <li>{single.breed}</li>
-            <li>{single.status}</li>
-            <li>{single.imageUrl}</li>
-            <li>{single.createdAt}</li>
-            <li>{single.teamId}</li>
-            <li>{single.cohortId}</li>
-          </ul>
-        );
-      })}
-      ;
+      <div>
+        <h1>{player.name}</h1>
+      </div>
     </>
   );
 }

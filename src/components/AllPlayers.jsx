@@ -41,12 +41,6 @@ export default function AllPlayers() {
     setSearchInput(e.target.value);
   };
 
-  if (searchInput.length > 0) {
-    getPlayers().filter((player) => {
-      return player.name.match(searchInput);
-    });
-  }
-
   return (
     <>
       <form onSubmit={handleSubmit} className="form">
@@ -70,20 +64,23 @@ export default function AllPlayers() {
       </div>
       <table>
         <thead>
-          <th>Name</th>
-          <th>Breed</th>
-          <th>Status</th>
-          <th>Action</th>
+          <tr>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody>
-          {players.map((player) => {
+          {players.filter((player)=>player.name.match(searchInput)).map((player) => {
             return (
               <tr key={player.id}>
                 <td>{player.name}</td>
                 <td>{player.breed}</td>
                 <td>{player.status}</td>
                 <td>
-                  <button onClick={() => navigate("/playerDetails")}>
+                  {/* Anything with a colon in front of it gets turned into params. */}
+                  <button onClick={() => navigate(`/players/${player.id}`)}>
                     View Player
                   </button>
                   <button onClick={() => handleDeletePlayerClick(player.id)}>
