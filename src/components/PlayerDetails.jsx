@@ -8,11 +8,9 @@ export default function PlayerDetails() {
   const navigate = useNavigate();
 
   let { id } = useParams();
-  console.log(id);
-
+  
   useEffect(() => {
     getPlayer(id).then((player) => {
-      console.log(player);
       setPlayer(player);
     });
   }, []);
